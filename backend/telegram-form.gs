@@ -5,12 +5,13 @@
  * ТОЛЬКО здесь, в закрытом проекте Google, и никогда не попадает на сайт.
  *
  * В публичном репозитории лежит копия-шаблон без токена.
+ * Установка: backend/setup.sh (macOS/Linux) или backend/setup.ps1 (Windows).
  */
 
 // ⬇️ Вставьте НОВЫЙ токен от @BotFather (тот, что выдан после /revoke)
-const TELEGRAM_TOKEN = 'ВСТАВЬТЕ_СЮДА_НОВЫЙ_ТОКЕН';
+const TELEGRAM_TOKEN = '__TELEGRAM_TOKEN__';
 // ⬇️ ID чата, куда приходят заявки
-const CHAT_ID = 'ВСТАВЬТЕ_СЮДА_ID_ЧАТА';
+const CHAT_ID = '__CHAT_ID__';
 
 // Не больше стольких заявок в час (защита от спама)
 const MAX_PER_HOUR = 30;

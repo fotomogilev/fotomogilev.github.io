@@ -1,18 +1,14 @@
-const TOKEN = '8241145818:AAHfPDJTRHRoDS2U7MYu0grRr8928i22MjA';
-const CHAT_ID = '-5062026849';
-const URL_API = `https://api.telegram.org/bot${TOKEN}/sendMessage`;
+// Адрес приёмника заявок (Google Apps Script). Токен бота хранится там, а не на сайте.
+const FORM_ENDPOINT = '';
 
 const form = document.getElementById('contact-form');
 const succes = document.querySelector('.succes');
 const formError = document.querySelector('.form-error');
 const submitBtn = form ? form.querySelector('.form__submit') : null;
+const pageOpenedAt = Date.now();
 
-function escapeForTelegram(str) {
-  if (!str || typeof str !== 'string') return '';
-  return str
-    .replace(/&/g, '&amp;')
-    .replace(/</g, '&lt;')
-    .replace(/>/g, '&gt;');
+function reachGoal(name) {
+  if (typeof window.trackGoal === 'function') window.trackGoal(name);
 }
 
 if (form) {
@@ -35,35 +31,35 @@ if (form) {
       return;
     }
 
+    if (!FORM_ENDPOINT) {
+      formError && formError.classList.remove('disp');
+      return;
+    }
+
     if (submitBtn) {
       submitBtn.disabled = true;
     }
 
-    const message =
-      'Заявка с сайта\n' +
-      'Имя: ' + escapeForTelegram(nameVal) + '\n' +
-      'Номер телефона: ' + escapeForTelegram(phoneVal) + '\n' +
-      'Комментарий: ' + (commentVal ? escapeForTelegram(commentVal) : '—');
+    const body = new URLSearchParams({
+      name: nameVal,
+      phone: phoneVal,
+      comment: commentVal,
+      website: this.website ? this.website.value : '',
+      elapsed: String(Date.now() - pageOpenedAt)
+    });
 
-    fetch(URL_API, {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json'
-      },
-      body: JSON.stringify({
-        chat_id: CHAT_ID,
-        text: message
-      })
-    })
+    fetch(FORM_ENDPOINT, { method: 'POST', body: body })
       .then(function (response) {
-        if (!response.ok) {
-          throw new Error('Request failed with status ' + response.status);
-        }
+        return response.json();
       })
-      .then(function () {
+      .then(function (data) {
+        if (!data || !data.ok) {
+          throw new Error((data && data.error) || 'Request failed');
+        }
         if (succes) {
           succes.classList.remove('disp');
         }
+        reachGoal('form_submit');
         form.reset();
       })
       .catch(function (err) {

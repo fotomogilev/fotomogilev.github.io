@@ -22,11 +22,6 @@ const targets = [
     widths: [320, 640],
     fallback: "png"
   })),
-  {
-    input: "../people2/sophy.png",
-    widths: [320, 640],
-    fallback: "png"
-  },
   ...["1.jpg", "2.JPG", "3.jpg", "5.jpg", "6.jpg", "kak_dobratsya.png"].map((name) => ({
     input: `../place/${name}`,
     widths: [420, 840],

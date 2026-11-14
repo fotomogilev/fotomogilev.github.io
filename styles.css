@@ -1162,6 +1162,15 @@ main > section {
   display: none;
 }
 
+/* Скрытое поле-ловушка для спам-роботов */
+.form__trap {
+  position: absolute;
+  left: -10000px;
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
+}
+
 /* Legal page */
 .legal-page {
   padding-top: calc(var(--header-height) + clamp(24px, 5vw, 56px));

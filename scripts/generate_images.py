@@ -22,7 +22,6 @@ TARGETS = [
     ("services/5.jpg", [560, 1040], "jpg"),
     ("services/to_home.jpg", [560, 1040], "jpg"),
     *[(f"people2/{i}.png", [320, 640], "png") for i in range(1, 12)],
-    ("people2/sophy.png", [320, 640], "png"),
     ("place/1.jpg", [420, 840], "jpg"),
     ("place/2.JPG", [420, 840], "jpg"),
     ("place/3.jpg", [420, 840], "jpg"),

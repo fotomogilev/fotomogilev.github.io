@@ -1,5 +1,5 @@
 // Адрес приёмника заявок (Google Apps Script). Токен бота хранится там, а не на сайте.
-const FORM_ENDPOINT = '';
+const FORM_ENDPOINT = 'https://script.google.com/macros/s/AKfycbyzel_LuTVPG60OU9hHwu2W3ySr1HT7dWO6GaXuaztCYQpKKeod-wPJb3WS9xR7kCaCtA/exec';
 
 const form = document.getElementById('contact-form');
 const succes = document.querySelector('.succes');

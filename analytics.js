@@ -1,7 +1,7 @@
 // Яндекс.Метрика. Номер счётчика — из кабинета metrika.yandex.ru.
 // Пока номер 0 — Метрика не загружается.
 (function () {
-  var YM_ID = 0;
+  var YM_ID = 114253236;
 
   window.trackGoal = function (name) {
     if (YM_ID && typeof window.ym === 'function') window.ym(YM_ID, 'reachGoal', name);
